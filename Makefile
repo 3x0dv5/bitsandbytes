@@ -14,7 +14,13 @@ endif
 
 
 
-NVCC := $(CUDA_HOME)/bin/nvcc
+ifeq ($(findstring /bin,$(CUDA_HOME)),/bin)
+    NVCC := $(CUDA_HOME)/nvcc
+    $(info Using NVCC path: $(NVCC))
+else
+    NVCC := $(CUDA_HOME)/bin/nvcc
+    $(info Using NVCC path: $(NVCC))
+endif
 
 ###########################################
 
